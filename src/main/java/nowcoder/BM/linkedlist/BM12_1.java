@@ -1,4 +1,4 @@
-package nowcoder.BM;
+package nowcoder.BM.linkedlist;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package nowcoder.BM;
+package nowcoder.BM.linkedlist;
 
 public class BM1_1 {
     public ListNode ReverseList(ListNode head) {

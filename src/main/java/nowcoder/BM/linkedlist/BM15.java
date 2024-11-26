@@ -1,4 +1,4 @@
-package nowcoder.BM;
+package nowcoder.BM.linkedlist;
 
 public class BM15 {
     public ListNode deleteDuplicates(ListNode head) {

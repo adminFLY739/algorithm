@@ -1,4 +1,4 @@
-package nowcoder.BM;
+package nowcoder.BM.linkedlist;
 
 public class BM8_1 {
     public ListNode FindKthToTail(ListNode pHead, int k) {

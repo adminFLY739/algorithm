@@ -1,4 +1,4 @@
-package nowcoder.BM;
+package nowcoder.BM.linkedlist;
 
 public class BM13 extends BM1 {
     public boolean isPail(ListNode head) {

@@ -1,4 +1,4 @@
-package nowcoder.BM;
+package nowcoder.BM.linkedlist;
 
 public class BM4 {
     public ListNode Merge(ListNode pHead1, ListNode pHead2) {

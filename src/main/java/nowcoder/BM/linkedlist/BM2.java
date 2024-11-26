@@ -1,4 +1,4 @@
-package nowcoder.BM;
+package nowcoder.BM.linkedlist;
 
 public class BM2 {
     public ListNode reverseBetween(ListNode head, int m, int n) {

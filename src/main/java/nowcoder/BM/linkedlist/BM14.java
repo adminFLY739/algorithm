@@ -1,4 +1,4 @@
-package nowcoder.BM;
+package nowcoder.BM.linkedlist;
 
 public class BM14 {
     public ListNode oddEvenList(ListNode head) {

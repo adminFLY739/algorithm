@@ -1,4 +1,4 @@
-package nowcoder.BM;
+package nowcoder.BM.linkedlist;
 
 public class BM11 extends BM1 {
     public ListNode addInList(ListNode head1, ListNode head2) {
