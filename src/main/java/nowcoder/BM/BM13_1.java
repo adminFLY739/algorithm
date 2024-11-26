@@ -1,4 +1,4 @@
-package nowcoder;
+package nowcoder.BM;
 
 public class BM13_1 {
     public boolean isPail(ListNode head) {

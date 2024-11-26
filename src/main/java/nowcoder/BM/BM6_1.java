@@ -1,4 +1,4 @@
-package nowcoder;
+package nowcoder.BM;
 
 public class BM6_1 {
     public boolean hasCycle(ListNode head) {

@@ -1,4 +1,4 @@
-package nowcoder;
+package nowcoder.BM;
 
 public class BM11_1 {
     public ListNode ReverseList(ListNode pHead) {

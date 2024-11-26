@@ -1,4 +1,4 @@
-package nowcoder;
+package nowcoder.BM;
 
 public class ListNode {
     int val;
