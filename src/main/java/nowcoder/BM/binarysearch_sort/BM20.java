@@ -1,39 +1,48 @@
 package nowcoder.BM.binarysearch_sort;
 
 public class BM20 {
+    int count = 0;
+
     public int InversePairs(int[] array) {
-        if (array == null || array.length == 0) {
-            return (int) (res % 1000000007);
+        if (array == null || array.length < 2) {
+            return 0;
         }
-        int n = array.length;
-        temp = new int[n];
-        for (int i = 1; i < n; i = i + i) {
-            for (int j = 0; j < n - i; j += i + i) {
-                work(array, j, j + i - 1, Math.min(j + i + i - 1, n - 1));
-            }
-        }
-        return (int) (res % 1000000007);
+        splitArray(array, 0, array.length - 1);
+        return count;
     }
 
-    private int[] temp;
-    private long res = 0;
-
-    private void work(int[] array, int l, int m, int h) {
-        int i = l, j = m + 1;
-        for (int k = l; k <= h; k++) {
-            temp[k] = array[k];
+    public void splitArray(int[] array, int left, int right) {
+        int mid = left + (right - left) / 2;
+        if (left < right) {// 极限状态下，left和right相邻；若left和right相等，说明递归到头了
+            splitArray(array, left, mid);
+            splitArray(array, mid + 1, right);
+            mergeArray(array, left, mid, right);
         }
-        for (int k = l; k <= h; k++) {
-            if (i > m) {
-                array[k] = temp[j++];
-            } else if (j > h) {
-                array[k] = temp[i++];
-            } else if (temp[j] < temp[i]) {
-                array[k] = temp[j++];
-                res += 1 + m - i;
+    }
+
+    public void mergeArray(int[] array, int left, int mid, int right) {
+        int[] arr = new int[right - left + 1];
+        int index = 0;
+        int start = left;
+        int l = left;
+        int r = mid + 1;
+        while (l <= mid && r <= right) {
+            if (array[l] <= array[r]) {
+                arr[index++] = array[l++];
             } else {
-                array[k] = temp[i++];
+                arr[index++] = array[r++];
+                count += mid + 1 - l;// 右子数组小，往左子数组里面插，计算左子数组剩余
+                count %= 1000000007;
             }
+        }
+        while (l <= mid) {
+            arr[index++] = array[l++];
+        }
+        while (r <= right) {
+            arr[index++] = array[r++];
+        }
+        for (int num : arr) {
+            array[start++] = num;
         }
     }
 }
