@@ -4,27 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BM30 {
-    private List<TreeNode> lists = new ArrayList<>();
-
     public TreeNode Convert(TreeNode pRootOfTree) {
-        lists = inOrder(pRootOfTree);
-        TreeNode treeNode = lists.get(0);
-        for (int i = 1; i < lists.size() - 1; i++) {
-            treeNode.right = lists.get(i);
-            treeNode.right.left = treeNode;
-            treeNode = treeNode.right;
-        }
-        treeNode.left = lists.get(lists.size() - 1);
-        return treeNode;
-    }
-
-    public List<TreeNode> inOrder(TreeNode pRootOfTree) {
         if (pRootOfTree == null) {
             return null;
         }
-        inOrder(pRootOfTree.left);
+        List<TreeNode> lists = inOrder(pRootOfTree, new ArrayList<>());
+        TreeNode treeNode = lists.get(0);
+        TreeNode head = treeNode;
+        for (int i = 1; i < lists.size(); i++) {
+            TreeNode temp = lists.get(i);
+            treeNode.right = temp;
+            temp.left = treeNode;
+            treeNode = temp;
+        }
+        return head;
+    }
+
+    public List<TreeNode> inOrder(TreeNode pRootOfTree, List<TreeNode> lists) {
+        if (pRootOfTree == null) {
+            return null;
+        }
+        inOrder(pRootOfTree.left, lists);
         lists.add(pRootOfTree);
-        inOrder(pRootOfTree.right);
+        inOrder(pRootOfTree.right, lists);
         return lists;
     }
 }
