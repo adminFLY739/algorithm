@@ -1,27 +1,28 @@
 package nowcoder.BM.binarytree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BM34 {
-    int pre = Integer.MIN_VALUE;
+    List<TreeNode> lists = new ArrayList<>();
+
     public boolean isValidBST(TreeNode root) {
-//        if (root == null) {
-//            return false;
-//        }
-//        if (root.left == null && root.right == null) {
-//            return true;
-//        }
-//        if (root.left != null && root.right != null && root.left.val < root.val && root.val < root.right.val) {
-//            return isValidBST(root.left) && isValidBST(root.right);
-//        }
-//        return false;
-        if(root == null){
-            return true;
+        lists = inOrder(root);
+        for (int i = 0; i < lists.size() - 1; i++) {
+            if (lists.get(i).val > lists.get(i + 1).val) {
+                return false;
+            }
         }
-        boolean left = isValidBST(root.left);
-        if(root.val < pre){
-            return false;
+        return true;
+    }
+
+    public List<TreeNode> inOrder(TreeNode treeNode) {
+        if (treeNode == null) {
+            return lists;
         }
-        pre = root.val;
-        boolean right = isValidBST(root.right);
-        return left && right;
+        inOrder(treeNode.left);
+        lists.add(treeNode);
+        inOrder(treeNode.right);
+        return lists;
     }
 }
