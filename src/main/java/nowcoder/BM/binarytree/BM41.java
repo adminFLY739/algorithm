@@ -1,9 +1,6 @@
 package nowcoder.BM.binarytree;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class BM41 extends BM40 {
     public int[] solve(int[] preOrder, int[] inOrder) {
@@ -12,19 +9,22 @@ public class BM41 extends BM40 {
         }
         TreeNode root = reConstructBinaryTree(preOrder, inOrder);
         List<Integer> list = new ArrayList<>();
-        int[] res = new int[preOrder.length];
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
+        Deque<TreeNode> queue = new LinkedList<>();
+        queue.offerLast(root);
         while (!queue.isEmpty()) {
-            TreeNode node = queue.poll();
-            if (node.left != null) {
-                queue.add(node.left);
+            int size = queue.size();
+            list.add(queue.peekLast().val);
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.pollFirst();
+                if (node.left != null) {
+                    queue.offerLast(node.left);
+                }
+                if (node.right != null) {
+                    queue.offerLast(node.right);
+                }
             }
-            if (node.right != null) {
-                queue.add(node.right);
-            }
-            // todo
         }
+        int[] res = new int[list.size()];
         for (int i = 0; i < list.size(); i++) {
             res[i] = list.get(i);
         }
